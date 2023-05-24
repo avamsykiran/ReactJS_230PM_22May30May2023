@@ -30,6 +30,27 @@ class Contacts extends Component {
         }
     };
 
+    markEditable = id => {
+        this.setState({
+            contactList: this.state.contactList.map(c => c.id != id ? c :
+                { ...c, isEditing: true })
+        })
+    }
+
+    unmarkEditable = id => {
+        this.setState({
+            contactList: this.state.contactList.map(c => c.id != id ? c :
+                { ...c, isEditing: undefined })
+        })
+    }
+
+    updateContact = contact => {
+        this.setState({
+            contactList: this.state.contactList.map(c => c.id != contact.id ? c :
+                { ...contact, isEditing: undefined })
+        })
+    }
+
     render() {
         let { contactList } = this.state;
 
@@ -48,7 +69,19 @@ class Contacts extends Component {
                         </p>
                     )}
 
-                    {contactList.map(c => <ContactRow contact={c} deleteContact={this.deleteContact} />)}
+                    {contactList.map(
+                        c => c.isEditing ?
+                            <ContactForm 
+                                key={c.id} 
+                                contact={c} 
+                                saveContact={this.updateContact} 
+                                cancelEdit={this.unmarkEditable} /> :
+                            <ContactRow 
+                                key={c.id} 
+                                contact={c} 
+                                editContact={this.markEditable}
+                                deleteContact={this.deleteContact} />
+                    )}
                 </div>
             </div>
         );

@@ -104,7 +104,6 @@ ReactJS
             c. render()
             d. and other component life cycle methods.
 
-        
         render() has to return the JSX to be displayed on the screen.
 
         state will hold all the data related to the component.
@@ -115,9 +114,52 @@ ReactJS
         screen stays consisitant with the state.
 
         class components can also receive props through the constructor.
-    
+
+    6. ReactJS Forms And Event Handling
+
+    7. ReactJS Component Life Cycle Methods
+
+        constructor()                       to initilize state
+            |
+            ↓
+            render()                        to return the (DOM) html result of the component
+                |
+                ↓
+                componentDidMount()         to do any operation after the first rendering of the component
+                        |
+                        ↓
+                    /********************************************
+                        No Operation happens until setState is called
+                        in any event handler ...
+                    **********************************************/
+                         ↑              | //only when setState is called
+                         |              ↓
+                         |             render()    
+                         |                |  
+                         |                ↓     
+                         |<------------ componentDidUpdate()    to perform any operation after each rendering...
 
 
+    8. React Hooks
 
+         a hook is a function designed to impart enhaned properties to a function component.
+
+         if we use a hook, it is supposed to be the initial lines of code of the functiona component.
+
+         useState               will enable function component to have state.
+
+                                let [getter,setter] = useState(initalValue);
+
+                                let [userName,setUserName] = useState("Vamsy");
+
+        useEffect               is used as an equivalent to componentDidMount and componentDidUpdate.
+
+                                useEffect(callBack,[]);
+
+                                if the array is empty, the callBack is executed after the first render that is 
+                                equivalent to the componentDidMount
+
+                                if the array has any state fields, the the callBack get executed only when
+                                those fields are modified and it is equvalent to componentDidUpdate.
 
 
