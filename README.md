@@ -163,3 +163,30 @@ ReactJS
                                 those fields are modified and it is equvalent to componentDidUpdate.
 
 
+    9. json-server
+
+            is sued to create fake rest-api end-points based on a hypothetical
+            .json file.
+
+        md rest-api
+        cd rest-api
+        npm init -y                     //to initiate a nodejs project in that folder
+        npm i json-server --save        //to install json-server library
+
+        create rest-api/data.json       //this file should contain our hypothetical data.
+
+        include "start":"json-server --port 9999 --watch ./data.json"   in rest-api/package.json file
+
+        npm start
+
+    10. axios
+
+        npm i axios --save
+
+        axios.get("url").then( resp => { /*resp.data*/ } ).catch( err => {}  )
+        axios.put("url",reqBody) .then( resp => { /*resp.data*/ } ).catch( err => {}  )
+        axios.post("url",reqBody) .then( resp => { /*resp.data*/ } ).catch( err => {}  )
+        axios.delete("url") .then( resp => { /*resp.data*/ } ).catch( err => {}  )
+
+    
+        

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const ContactForm = ({ contact, saveContact, cancelEdit }) => {
 
-    let id = contact ? contact.id : 0;
+    let id = contact ? contact.id : 0; 
     let [fullName, setFullName] = useState(contact ? contact.fullName : '');
     let [mailId, setMailId] = useState(contact ? contact.mailId : '');
     let [mobile, setMobile] = useState(contact ? contact.mobile : '');
