@@ -162,7 +162,6 @@ ReactJS
                                 if the array has any state fields, the the callBack get executed only when
                                 those fields are modified and it is equvalent to componentDidUpdate.
 
-
     9. json-server
 
             is sued to create fake rest-api end-points based on a hypothetical
@@ -189,4 +188,42 @@ ReactJS
         axios.delete("url") .then( resp => { /*resp.data*/ } ).catch( err => {}  )
 
     
-        
+    11. State Management Using Redux
+
+        Redux is a thrid party library that offers central state management.
+
+        npm i redux react-redux --save
+
+        redux
+
+            const store = createStore(reducer)
+
+                store       is the object that holds the entire data of the application.
+                            ideally an app will have only one store.
+
+                reducer     is a pure javascript function that is responsible to manage the data
+                            in the store
+
+                            const myReducer = (oldState,action) => {
+                                //according to the action
+                                //the oldState is modified
+                                //and the modifeidState is returned.
+                            }
+
+                action      is a object having two fields type and payload.
+                            type is to inform what operation to be done
+                            paylaod is the data need for the operation
+
+                            { type:"ADD",empObject }
+
+                dispatch    is a function offered by redux and is used
+                            by a component to send an action to the reducer.
+
+        react-redux
+
+                useDispatch     returns a dispatch function related to teh current component
+
+                useSelect       returns the collected data from the store into the component
+
+                
+
