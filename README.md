@@ -226,4 +226,29 @@ ReactJS
                 useSelect       returns the collected data from the store into the component
 
                 
+    12. redux and axios integration through thunk
 
+            redux   state management    synchronous 
+            axios   rest api calls      asynchronous
+
+            axios  <------>  thunk  <------->    redux
+
+
+            actionThunk     is a function that disptaches action objects.
+
+
+             store-->--------------------------------------|----------------|
+                ↑                                          |                |
+                |                                          | useSelector    | useSelector
+                |                                          Component1       Component2
+                |                                           |                   |
+                |                                           |                   |
+                | modifiedState                             |useDispatch        |useDispatch
+                |<-----reducer------------------------------|action             |actionThnuk
+                            |                                                   |
+                            |                          ------------------------------                                         
+                            |  <---waitAction----------|                             |
+                            |                          | axios to make rest api call |
+                            |  <---dataAction----------|    case1: success           |
+                            |  <---errAction ----------|    case2: error             |
+                                                       |-----------------------------|

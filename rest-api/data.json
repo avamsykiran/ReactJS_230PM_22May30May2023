@@ -28,19 +28,7 @@
       "id": 5,
       "fullName": "Sriniva",
       "mailId": "srinu@iiht.com",
-      "mobile": "9052224757"
-    },
-    {
-      "id": 6,
-      "fullName": "Aravind",
-      "mailId": "aravind@iiht.com",
       "mobile": "1234567890"
-    },
-    {
-      "id": 7,
-      "fullName": "Ramayya",
-      "mailId": "rama@gmail.com",
-      "mobile": "6767676766"
     }
   ]
 }
