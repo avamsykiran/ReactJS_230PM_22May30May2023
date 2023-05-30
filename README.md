@@ -1,254 +1,495 @@
 ReactJS
------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 
-    1. Pre-requisites
-        HTML 5, CSS 3, Javascript (ES6) and Bootstrap 5.
-
-    2. ReactJS is a SPA framework.
-
-    3. SPA - Single Page Application
-
-    4. React Archetectue
-
-        React SPA has components are the basic building blocks.
-
-        A Component is extended html element deifned using the React FrameWork.
-
-        Function Component      has no state can not access any component life cycle methods.
-        Class Component         has state and access to all Component Life Cycle methods.
-        High Order Component    which is a pure function that accepts a component as param
-                                and retrns a modified component.
-
-    5. How do we create a reactjs application
-
-        Lab Setup
-            1. NodeJS
-            2. VSCode IDE
-
-        npx create-react-app app-name
-
-    6. Function Component
-
-            a) a function component is any function that takes an optional parameter called 'props'
-                and returns a JSX element.
-
-            b. a function component is used as an HTML ELEMENT.
-
-            c. props    short for properties is used to receive data from a parent component
-                        to a child component through attributes.
-
-    7. JSX Elements ( JavaScrpt XML elements)
-
-        was designed to reduce the repeated usage of DOM Manipulation.
-
-        1. A JSX element can have one and only one root at a time.
-
-            let p1 = <p>This is a nes Para</p> ;
-            let ol = (
-                        <ol>
-                            <li>item1</li>
-                            <li>Item2</li>
-                        </ol>
-                     );
-            let desp = <p>This is a special project</p> <p>And this is our first time</p> //error
-            let desp = (
-                            <div>
-                                <p>This is a special project</p> 
-                                <p>And this is our first time</p> 
-                            </div>
-            );
-
-        2. Every component must have initial capaitlas and all html elements must 
-            be written in lower case.
+    Pre-Requisites
+        Html 5      Typography, tables, lists, forms, validation attributes, event attributes
+                    html 5 api
         
-        3. the attribute 'class' must not be sued and instead 'className' can be used.
+        CSS 3      Selectors, Selector Operators, the regular css-properties
 
-        4. we use {} to embed javascript inside html.
+        JavaScript (ECMAScript 6)
+                Object, Math, String, Date, docuemnt, window
+                functions   closures, maxims, call backs, arrow functions
+                arrays and array prototype function like reduce, map , filter ..etc.,
+                ES6 concepts like   spread operators, template literals, classes,
+                objects, json, inheretence, modules, asynchronosu programming (Promise, async
+                and await)
 
-            let userName = "Vamsy Kiran":
-            let p1 = <p>Hello {userName}! welcome aboard!</p>;
+    Lab Setup
 
-            let age=17;
-            let msg = age>=17 && <p> Your can marry </p>
-            let msg2 = age>=17?  <p> Your can marry </p> : <p> have to wait a little more</p>
+        VSCode      IDE
+        NodeJS      Development Environment
+        Chrome      Browser
 
-            let friends = ["Vamsy","Suseela","Jyothi","Lalitha"];
+    Introduction
 
-            let frdLsit = (
-                <ol>
-                    friends.map( fnm => <li>fnm</li>)
-                </ol>
-            );
+        is a javascript based SPA library.
 
-    8. Bootstrap Integration
+        WebSite (static)    -------------> Dynamic Web Applications --------------> SPA
+
+        Dynamic Web Application
+
+            Server                                                  Client/Browser
+                ServletsJSP/        <-------------REQ---------------
+                ASP.net / PHP
+                                process the request
+                                generate html content dynamically
+
+                                    ---------RESP (html content) ------>
+
+                                                                    html is received and loaded on the browser, after unloading any prev content.
+
+                                                                    in case of an event / form submition / a link click
+                                <-------------REQ---------------
+                                process the request
+                                generate html content dynamically
+
+                                 ---------RESP (html content) ------> 
+
+        SPA - Single Page Application ?
+
+            Server                                                  Client/Browser
+                spa-bundle        <-------------REQ---------------
+                (index.html + *.js + *.css)
+                          
+                                ---------RESP (spa-bundle) ------>  the entire spa-bundle.
+
+                                                                    index.html along with the assosiated JS
+                                                                    is laoded.
+
+                                                                    all evetns / form submitions/ links ..etc.,
+                                                                    are handled on the cleint itself by the JS.
+
+                                                                    any needed new html content is also
+                                                                    generated on the client and it repalces
+                                                                    the old content of index.html which eliminates
+                                                                    loading and unloading.
+
+                rest-api    <-----data operation (xml/json)------>  data opertions like CRUD.
+
+    NodeJS?
+
+        is a javascript runtime to enable javascript to execute in a stand alone mode without any browser.
+
+        while developing a reactjs app, we have to
+
+            compose                     IDE             VSCode
+            build and package           build tool      NPM     (part of NodeJS)
+            manage dependencies         build tool      NPM     (part of NodeJS)
+            test                        testing lib     Jest    is a JS library (has to run on NodeJS)
+            deploy /host                Dev Server      react-scripts server    (has to run on NodeJS)
+            execute                     browser         chrome
+
+        hence we need nodejs.
+
+    NPM
+
+        node package manager.
+
+        each app is called a package in nodejs. 
+
+        npm --version
+
+        npm init                is used to initialize a folder as a node project.
+        npm init -y             is used to initialize a folder as a node project skipping the wizard.
+
+        package.json            is the build config file. contains project meta data, list
+                                of dependencies and a few scripts.
+
+                                npm start               is used to build and execute the app
+                                npm test                is used to build and run test cases
+                                npm build               is used to build and pack
+                                npm run <custom-script>
+
+        npm install library-name --save     is used to install a library local to the project.
+        npm install library-name --save -g  is used to install a library globally on the dev-machine
+        npm install library-name --save-dev is used to install a library local to the project but not
+                                                include it in the final bundle.
+
+        node_modules        is available in each project and only in our 'users' folder.
+
+                            all globally installed packages will goto 'node_module' of 'users' folder
+                            all locally installed packages will goto 'node_module' of your project.
+
+        npm install         will create a node_modules folder in the project and downloads
+                            all the libraries listed in package.json
+
+        
+    Create a React App
+
+        npx create-react-app proj-name
+
+        (or)
+
+        npm intall -g create-react-app
+        create-react-app proj-name
+
+    JSX ?
+
+        JavaScript XML (JavaScript eXtended MarkUp Language)
+
+            1. this script allows us to assign html elements directly 
+                to a javascript variable.
+            2. this script allows interpolation {} to embed javascript inside html.
+            3. We can use a set of paranthesis to compose multi-line html.
+            4. we can use operators like &&, || and ?: for conditional formatting.
+            5. it is completly case sensitive and all html elements must be in lower case.
+            6. All html attributes must follow camel case as hypens are not allowed:
+
+                'onclick'  is writeen as 'onClick'
+                'aris-media'    is written as 'arisMedia'
+
+            7. the html 'class' attribute is not allowed, instead we use 'className'.
+
+                let userName = "Vamsy";
+                let myPara = <p> {userName} </p>;
+
+                let p=23000;
+                let r=3.2;
+                let t=236;
+                let myPara2 = <p> Interest to be paid is { (p*t*r)/100 } </p>;
+
+                let friends = ["Vamsy","Sagar","Suseela","Kiran"];
+                let frdsList = friends.length===0 ? <p>No Freidns</p> : (
+                    <ol>
+                        { friends.map( ele => <li>{ele}</li> ) }
+                    </ol>
+                );
+
+    React Components
+
+        reactjs offers html extendability meaning we can create our own html elements (tags) an attributes in
+        reactjs, such react elements are called components.
+
+        Function Components
+        Class Components
+
+    Function Components
+
+        is are known as state-less components
+
+        is a javascript function that returns a single JSX element and can accept an optional arg 'props'.
+
+        react components must be following initial capitalization.
+
+        const Header = () => <h3>My First React SPA</h3>;
+
+        <Header></Header>
+
+    props ?
+
+        is an object that carries data from parent component into a child component through attributes.
+
+    Class Components
+
+        is known as state-ful component.
+
+        is a javascript class that extends React.Component.
+
+            React.Component offers
+                1. state
+                2. setState()
+                3. componentDidMount()
+                4. render()
+                5. componentDidUpdate()
+                6. componentDidCatch()
+                7. componentWillUnMount()
+
+            class Dashboard extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state = {};
+                }
+
+                render(){
+                    return (<p></p>);
+                }
+            }
+
+        state ?
+
+            is a field used to hold all the related data of a component.
+            the state field is initialized in the component constructor.
+
+            the state is observed for changes and once state gets changed
+            the 'render()' get invoked automatically.
+
+            'state' is immutable. but the entire state has to be replaced.
+
+            to replace state we use 'setState()' method.
+
+        render() 
+
+            method is to return the JSX element to be outputted by our component. means
+            the developer has to override the render() to return the disired DOM.
+
+        props ? 
+
+            class components receive 'props' through thier constructor.
+
+    Integrating Bootstrap
 
         npm i bootstrap --save
 
-        node_modules
-            |-bootstrap
-                |-dist
+        node_module
+            |- bootstrap
+                |- dist
                     |-css
-                        |-bootstrap.min.css
+                        |-bootstrap.min.css    
                     |-js
-                        |-bootstrap-bundle.js
+                        |-bootstrap.bundle.js
 
-        these two fiel are to be imported into index.js
+        import both of these files into index.js
 
-    9. Class Component
+    Assignment # 1
 
-        is a javascript class that inherits from React.Component class and overrides render() method.
+        Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
+        hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
 
-        From React.Component a class components inherits:
-            a. setState()
-            b. state property
-            c. render()
-            d. and other component life cycle methods.
+    ReactJS Forms
 
-        render() has to return the JSX to be displayed on the screen.
+        Controlled
 
-        state will hold all the data related to the component.
+            the form element is boudn to a state field and the changes are tracked using onChanges event.
+            the single source of truth is ensured.
 
-        state is immutable. but the state can be replaced using setState() method.
+        UnControlled
 
-        each time the state is set, the render() gets invoekd automatically so that the
-        screen stays consisitant with the state.
+            use react 'refs'.
+            where a ref is a accessable id given to an html-element.
 
-        class components can also receive props through the constructor.
+            <input type="text" ref="tb1" />
 
-    6. ReactJS Forms And Event Handling
+            let data = this.refs.tb1.value;
 
-    7. ReactJS Component Life Cycle Methods
+    Component LifeCycle Methods
 
-        constructor()                       to initilize state
-            |
+        constructor()               //use to initialize the state and receive 'props'
             ↓
-            render()                        to return the (DOM) html result of the component
-                |
-                ↓
-                componentDidMount()         to do any operation after the first rendering of the component
-                        |
-                        ↓
-                    /********************************************
-                        No Operation happens until setState is called
-                        in any event handler ...
-                    **********************************************/
-                         ↑              | //only when setState is called
-                         |              ↓
-                         |             render()    
-                         |                |  
-                         |                ↓     
-                         |<------------ componentDidUpdate()    to perform any operation after each rendering...
+            render()                //used to return the DOM to be display for the component.
+            ↓
+            componentDidMount()     //used to execute any job after the first 'render()' is done.
 
+                /*****************************************************************/
+                    when ever setState() is called through any event handler or
+                    componentDidMount()
+                /*****************************************************************/
+                ↑    ↓
+                |    render()                //used to return the DOM to be display for the component.
+                |      ↓
+                |      componentDidUpdate() //used to execute any job after each rendering.
+                |       ↓
+                |-------|
 
-    8. React Hooks
+    React Hooks
 
-         a hook is a function designed to impart enhaned properties to a function component.
+        a hook is a function designed to provide a particular react feature to a functional component,
+        so that functional components can do everything that a class component is capable of.
 
-         if we use a hook, it is supposed to be the initial lines of code of the functiona component.
+        this makes functional component onpar with class components and more over function components
+        are easy to test and hence 90% of the app is constructed using function component.
 
-         useState               will enable function component to have state.
+        LifeCycle Hooks
 
-                                let [getter,setter] = useState(initalValue);
+            useState            provides state to a function component.
+                                returns a [getter,setter]
+                                accepts an initial value
 
-                                let [userName,setUserName] = useState("Vamsy");
+                                let [x,setX] = useState(0);
 
-        useEffect               is used as an equivalent to componentDidMount and componentDidUpdate.
+            useEffect           provides componentDidMount and componentDidUpdate equivalents.
+                                accept a callback and an optional dependency array.
 
-                                useEffect(callBack,[]);
+                                useEffect( () => {/*this method gets executed after every render()*/ } )
+                                useEffect( () => {//this method gets executed after the first render()} , [])
+                                useEffect( () => {/*this method gets executed after every render() if x changed */ } , [x])
 
-                                if the array is empty, the callBack is executed after the first render that is 
-                                equivalent to the componentDidMount
-
-                                if the array has any state fields, the the callBack get executed only when
-                                those fields are modified and it is equvalent to componentDidUpdate.
-
-    9. json-server
-
-            is sued to create fake rest-api end-points based on a hypothetical
-            .json file.
-
-        md rest-api
-        cd rest-api
-        npm init -y                     //to initiate a nodejs project in that folder
-        npm i json-server --save        //to install json-server library
-
-        create rest-api/data.json       //this file should contain our hypothetical data.
-
-        include "start":"json-server --port 9999 --watch ./data.json"   in rest-api/package.json file
-
-        npm start
-
-    10. axios
-
-        npm i axios --save
-
-        axios.get("url").then( resp => { /*resp.data*/ } ).catch( err => {}  )
-        axios.put("url",reqBody) .then( resp => { /*resp.data*/ } ).catch( err => {}  )
-        axios.post("url",reqBody) .then( resp => { /*resp.data*/ } ).catch( err => {}  )
-        axios.delete("url") .then( resp => { /*resp.data*/ } ).catch( err => {}  )
-
-    
-    11. State Management Using Redux
-
-        Redux is a thrid party library that offers central state management.
+    Application Level State Management using Redux
 
         npm i redux react-redux --save
 
-        redux
+        redux       is a individual library used to maintain state for a UI/UX app.
 
-            const store = createStore(reducer)
+                    store           is an object managed by redux to hold the state.
+                                    an application has only one store.
 
-                store       is the object that holds the entire data of the application.
-                            ideally an app will have only one store.
+                                    let hrStore = createStore(hrReducer);
+                                    let hrStore = createStore(combineReducers({emps:empsReducer,detps:deptsReducer}));
 
-                reducer     is a pure javascript function that is responsible to manage the data
-                            in the store
+                    reducer         is a pure function that does data operations like CRUD on the store.
 
-                            const myReducer = (oldState,action) => {
-                                //according to the action
-                                //the oldState is modified
-                                //and the modifeidState is returned.
-                            }
+                                    const empsReducer = (state,action) => {
+                                        //peform the data operations
+                                        //deopending on the action coming in
 
-                action      is a object having two fields type and payload.
-                            type is to inform what operation to be done
-                            paylaod is the data need for the operation
+                                        return modifedState; //is going to repalce the state in the store.
+                                    };
 
-                            { type:"ADD",empObject }
+                    dispatch        is a dynamic function that is used to send actions to a reducer
+                                    from a component.
 
-                dispatch    is a function offered by redux and is used
-                            by a component to send an action to the reducer.
+                    action          is an object having a type and payload as fields; where type indicates
+                                    what operation needs to be done and payload carries the data need to do the operation.
 
-        react-redux
+                                    const EMP_INSERT_ACTION = {type:"ADD",emp:{id:1,name:"Vamsy",basic:45600} }
+                                    const DEL_EMP_ACTION = { type="REMOVE",empId:123};
 
-                useDispatch     returns a dispatch function related to teh current component
+        react-redux     is  a library that acts as integration between redux and react.                             
+           
+                Provider        is a component that wrap a store around the top-level component of our app.
 
-                useSelect       returns the collected data from the store into the component
+                                <Provider store={hrStore}>
+                                 <App />
+                                </Provider>
 
-                
-    12. redux and axios integration through thunk
+                useSelector     is a hook used to extract needed data from the globalState of the store into a component.
 
-            redux   state management    synchronous 
-            axios   rest api calls      asynchronous
+                useDispatch     is a hook that returns 'dispatch' function.
 
-            axios  <------>  thunk  <------->    redux
+                connect(mapStateToProps,mapDispatchToProps)(classComponent)
+                                is used to integrate dispatch and extract data from a globalState into a class component.
+
+            store →-------(state)----------------------
+             ↑                   ↓                   ↓
+             |                   |                   |
+             |                   | useSelector       | useSelector (extract needed info from global-state)
+             |                   |                   |
+             | modifiedState   Component1          Component2
+             |                   |                   |
+             |                   |                   |
+             |                   | useDispatch       | useDispatch
+             |                   |                   |
+             |                   |                   |
+             |          |--←dispatch(action)         |
+          reducer ←-----|                            |
+                        |---------------------------←|dispatch(action)
+
+        cosnt itemsReducer = (state = { itemsList=[] } ,action) =>{
+            //itmes managed
+        }
+
+        cosnt empsReducer = (state = { empsList=[] } ,action) =>{
+            //emps managed
+        }
+
+        cosnt deptsReducer = (state = { deptsList=[] } ,action) =>{
+            //depsts managed
+        }
+
+        cosnt invStore = createStore(itemsReducer);
+
+            invStore                                    let items = useSelector(state => state.itemsList);
+                |- itemsList
+
+        cosnt hrStore = createStore(combineReducers({emps:empsReducer,depts:deptsReducer}));
+
+            hrStore                                     let emps = useSelector(state => state.emps.empsList)
+                |-depts
+                |   |-deptsList
+                |-emps
+                    |-empsList
+
+    Assignment # 2
+
+        Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
+        hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
+        The state has to be at application level and managed using REDUX.
+
+    rest-api using json-server
+
+        json-server is a javascript library to that generate fake rest-api end-points from a given '.json' file.
+        it is for learning purpose.
+
+        md inv-api
+        cd inv-api
+        npm init -y
+        npm i json-server --save
+
+            inv-api
+                |- invData.json
+                |- package.json "start":"json-server --port 9999 --watch ./invData.json"
+
+        npm start
+
+    
+    calling rest-api using AXIOS (asynchronous XML Input Output System)
+
+        npm i axios --save
+
+            axios.get(url)  returns a Promise object
+            axios.post(url,requestBody)  returns a Promise object
+            axios.put(url,requestBody)  returns a Promise object
+            axios.delete(url)  returns a Promise object
+
+                let p1 = axios.get("http://localhost:9999/items");
+
+                p1.then( resp => {} ).catch( err => {} )
+
+    integrating rest-api calls with redux using redux-thunk 
+
+        npm i redux-thunk --save
+
+        redux-thunk offers a middleware called 'thunk' which sits between asynchronous calls and 'reducer'.
+
+        cosnt invStore = createStore(itemsReducer,applyMiddleware(thunk));
+
+        thunk accepts  function as an action, and executes the function and the result is shared
+        with the reducer through a action object.
+
+            store →-------(state)----------------------
+             ↑                   ↓                   ↓
+             |                   |                   |
+             |                   | useSelector       | useSelector (extract needed info from global-state)
+             |                   |                   |
+             | modifiedState   Component1          Component2
+             |                   |                   |
+             |                   |                   |
+             |                   | useDispatch       | useDispatch
+             |                   |                   |
+             |                   |                   |
+             |          |--←dispatch(actionObj)      |
+          reducer ←-----|                            |
+                        |                            |dispatch(actionThunk)
+                        |                            ↓
+                        |                           thunk invokes the actionThunk
+                        |                                              |-----------------------------------------|
+                        |----------------------------← (waitAction)----|  1. dispatch(waitAction)                |   
+                        |                                              |    2. make an axios call                |
+                        |                                              |        2(a) if sucessful response       |
+                        |----------------------------← (dataAction)----|                dispatch(dataAction)     |
+                        |                                              |        2(b) if error                    |
+                        |----------------------------← (errAction )----|                dispatch(errAction)      |   
+                                                                       |-----------------------------------------|    
+
+    Assignment # 3
+
+        Develop an SPA using reactjs to perform CRUD operation on 'Employee' in
+        hirarchiel component design pattern. The Employee fields are your choice (miniumum 4 fields).
+        The state has to be at application level and managed using REDUX and integrate it with rest-api
+        using axios and redux-thunk.
+
+        the rest-api can be created using json-server.
+ 
+    React Routing
+
+        npm i react-router react-router-dom --save
+
+            <BrowserRouter>
+
+                <Header />
+
+                <Routes>
+                    <Route path="/" element={<C1 />} />
+                    <Route path="/a" element={<C2 />} />
+                    <Route path="/b" element={<C3 />} />
+                    <Route path="/c/:pathVariable" element={<C4 />} />
+                </Routes>
+
+                <Footer />
+
+            </BrowserRouter>
 
 
-            actionThunk     is a function that disptaches action objects.
+            <Link to"" ></Link>       instead of <a></a>
 
-
-             store-->--------------------------------------|----------------|
-                ↑                                          |                |
-                |                                          | useSelector    | useSelector
-                |                                          Component1       Component2
-                |                                           |                   |
-                |                                           |                   |
-                | modifiedState                             |useDispatch        |useDispatch
-                |<-----reducer------------------------------|action             |actionThnuk
-                            |                                                   |
-                            |                          ------------------------------                                         
-                            |  <---waitAction----------|                             |
-                            |                          | axios to make rest api call |
-                            |  <---dataAction----------|    case1: success           |
-                            |  <---errAction ----------|    case2: error             |
-                                                       |-----------------------------|
+            <Navigate to="" />  
